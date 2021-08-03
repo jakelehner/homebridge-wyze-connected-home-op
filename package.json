@@ -1,36 +1,25 @@
 {
-  "name": "homebridge-wyze-connected-home-op",
-  "version": "0.5.4",
-  "description": "Wyze Connected Home plugin for Homebridge",
-  "license": "MIT",
+  "name": "homebridge-wyze-connected-home-v3",
+  "version": "1.0.0",
+  "description": "Wyze connected home plugin with support for wyze lock",
   "main": "src/index.js",
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
     "lint": "yarn eslint */**/*.{js,ts,tsx} --quiet --fix"
   },
-  "keywords": [
-    "homebridge-plugin"
-  ],
-  "homepage": "https://github.com/ndejong5/homebridge-wyze-connected-home-op",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ndejong5/homebridge-wyze-connected-home-op.git"
+    "url": "git+https://github.com/amrishraje/homebridge-wyze-connected-home-v3.git"
   },
+  "keywords": [
+    "Wyze",
+    "lock"
+  ],
+  "author": "amrish <amrishraje@gmail.com>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ndejong5/homebridge-wyze-connected-home-op.gitissues"
+    "url": "https://github.com/amrishraje/homebridge-wyze-connected-home-v3/issues"
   },
-  "engines": {
-    "node": ">=0.12.0",
-    "homebridge": ">=0.2.0"
-  },
-  "dependencies": {
-    "axios": "^0.19.2",
-    "md5": "^2.2.1"
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "@scope:registry": "https://github.com/ndejong5/homebridge-wyze-connected-home-op.git"
-  }
+  "homepage": "https://github.com/amrishraje/homebridge-wyze-connected-home-v3#readme"
 }
