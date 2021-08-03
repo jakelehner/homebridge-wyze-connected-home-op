@@ -10,6 +10,7 @@ This plugin adds support for Wyze Connected Home devices to [Homebridge](https:/
 - Outdoor Plug
 - V1 Contact Sensor
 - V1 Motion Sensor
+- Wyze Lock
 
 ## Added User-Agent Header to API call to avoid 403 Forbidden 
 
@@ -46,6 +47,8 @@ Supported devices will be discovered and added to Homebridge automatically.
 Special thanks to the following projects for reference and inspiration:
 * **[ha-wyzeapi](https://github.com/JoshuaMulliken/ha-wyzeapi)**, a Wyze integration for Home Assistant
 * **[wyze-node](https://github.com/noelportugal/wyze-node)**, a Node library for the Wyze API
+* **[403 fix](https://github.com/ndejong5/homebridge-wyze-connected-home-op)
+* **[Wyze lock original code](https://github.com/normana10/homebridge-wyze-connected-home-v2)
 
 Also, thanks to the [contributors](https://github.com/misenhower/homebridge-wyze-connected-home/graphs/contributors) who volunteered their time to help add support for more devices and features.
 
