@@ -1,6 +1,6 @@
 # homebridge-wyze-connected-home
 ## Releases
-### v.0.5.4
+### v.0.5.5
 - Added support for Wyze Lock. Thanks to @normana10 for his [work](https://github.com/normana10/homebridge-wyze-connected-home-v2) on wyze lock 
 ### v.0.5.4
 - Fixed 403 Error
