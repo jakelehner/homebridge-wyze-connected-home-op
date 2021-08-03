@@ -1,7 +1,8 @@
 {
-  "name": "homebridge-wyze-connected-home-v3",
-  "version": "1.0.0",
-  "description": "Wyze connected home plugin with support for wyze lock",
+  "name": "@tlpncd/homebridge-wyze-connected-home-op",
+  "version": "0.5.5",
+  "description": "Wyze Connected Home plugin for Homebridge",
+  "license": "MIT",
   "main": "src/index.js",
   "dependencies": {},
   "devDependencies": {},
@@ -10,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amrishraje/homebridge-wyze-connected-home-v3.git"
+    "url": "git://github.com/ndejong5/homebridge-wyze-connected-home-op.git"
   },
   "keywords": [
     "Wyze",
@@ -19,7 +20,11 @@
   "author": "amrish <amrishraje@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/amrishraje/homebridge-wyze-connected-home-v3/issues"
+    "url": "https://github.com/ndejong5/homebridge-wyze-connected-home-op/issues"
   },
-  "homepage": "https://github.com/amrishraje/homebridge-wyze-connected-home-v3#readme"
+   "publishConfig": {
+     "access": "public",
+     "@scope:registry": "https://github.com/ndejong5/homebridge-wyze-connected-home-op.git"
+   },
+  "homepage": "https://github.com/ndejong5/homebridge-wyze-connected-home-op"
 }
