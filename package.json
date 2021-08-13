@@ -15,7 +15,10 @@
   },
   "keywords": [
     "Wyze",
-    "lock"
+    "Light",
+    "MeshLight",
+    "lock",
+    "homebridge-plugin"
   ],
   "author": "amrish <amrishraje@gmail.com>",
   "license": "MIT",
