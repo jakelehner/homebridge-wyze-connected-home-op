@@ -11,23 +11,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ndejong5/homebridge-wyze-connected-home-op.git"
+    "url": "git://github.com/jakelehner/homebridge-wyze-connected-home-op.git"
   },
   "keywords": [
     "Wyze",
-    "Light",
-    "MeshLight",
-    "lock",
     "homebridge-plugin"
   ],
   "author": "amrish <amrishraje@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ndejong5/homebridge-wyze-connected-home-op/issues"
+    "url": "https://github.com/jakelehner/homebridge-wyze-connected-home-op/issues"
   },
-   "publishConfig": {
-     "access": "public",
-     "@scope:registry": "https://github.com/ndejong5/homebridge-wyze-connected-home-op.git"
-   },
-  "homepage": "https://github.com/ndejong5/homebridge-wyze-connected-home-op"
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "@scope:registry": "https://github.com/jakelehner/homebridge-wyze-connected-home-op.git"
+  },
+  "homepage": "https://github.com/jakelehner/homebridge-wyze-connected-home-op"
 }
