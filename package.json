@@ -4,7 +4,11 @@
   "description": "Wyze Connected Home plugin for Homebridge",
   "license": "MIT",
   "main": "src/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.21.1",
+    "colorsys": "^1.0.22",
+    "md5": "^2.2.1"
+  },
   "devDependencies": {},
   "scripts": {
     "lint": "yarn eslint */**/*.{js,ts,tsx} --quiet --fix"
