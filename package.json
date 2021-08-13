@@ -1,5 +1,5 @@
 {
-  "name": "jakelehner/homebridge-wyze-connected-home-op",
+  "name": "@jakelehner/homebridge-wyze-connected-home-op",
   "version": "0.5.5",
   "description": "Wyze Connected Home plugin for Homebridge",
   "license": "MIT",
