@@ -2,11 +2,17 @@ const { Service, Characteristic } = require('../types');
 const WyzeAccessory = require('./WyzeAccessory');
 
 const WYZE_API_POWER_PROPERTY = 'P3';
+const WYZE_API_ONLINE_PROPERTY = 'P5';
 const WYZE_API_BRIGHTNESS_PROPERTY = 'P1501';
 const WYZE_API_COLOR_TEMP_PROPERTY = 'P1502';
-const WYZE_API_COLOR_PROPERTY = 'P1503';
+const WYZE_API_REMAINING_TIME = 'P1505';
+const WYZE_API_AWAY_MODE = 'P1506';
+const WYZE_API_COLOR_PROPERTY = 'P1507';
+const WYZE_API_COLOR_LIGHT = 'P1508';
+const WYZE_API_POWER_LOSS_RECOVERY = 'P1509';
+const WYZE_API_DELAY_OFF = 'P1510';
 
-const WYZE_COLOR_TEMP_MIN = 2700;
+const WYZE_COLOR_TEMP_MIN = 1800;
 const WYZE_COLOR_TEMP_MAX = 6500;
 const HOMEKIT_COLOR_TEMP_MIN = 500;
 const HOMEKIT_COLOR_TEMP_MAX = 140;
@@ -18,7 +24,8 @@ module.exports = class WyzeLight extends WyzeAccessory {
     this.getCharacteristic(Characteristic.On).on('set', this.setOn.bind(this));
     this.getCharacteristic(Characteristic.Brightness).on('set', this.setBrightness.bind(this));
     this.getCharacteristic(Characteristic.ColorTemperature).on('set', this.setColorTemperature.bind(this));
-    this.getCharacteristic(Characteristic.Color).on('set', this.setColor.bind(this));
+    this.getCharacteristic(Characteristic.Hue).on('set', this.setColor.bind(this));
+    //this.getCharacteristic(Characteristic.Name).on('set', this.getName.bind(this));
   }
 
   async updateCharacteristics(device) {
