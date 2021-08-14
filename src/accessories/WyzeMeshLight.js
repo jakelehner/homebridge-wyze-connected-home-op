@@ -17,7 +17,7 @@ const WYZE_COLOR_TEMP_MAX = 6500;
 const HOMEKIT_COLOR_TEMP_MIN = 500;
 const HOMEKIT_COLOR_TEMP_MAX = 140;
 
-module.exports = class WyzeLight extends WyzeAccessory {
+module.exports = class WyzeMeshLight extends WyzeAccessory {
   constructor(plugin, homeKitAccessory) {
     super(plugin, homeKitAccessory);
 
@@ -25,7 +25,6 @@ module.exports = class WyzeLight extends WyzeAccessory {
     this.getCharacteristic(Characteristic.Brightness).on('set', this.setBrightness.bind(this));
     this.getCharacteristic(Characteristic.ColorTemperature).on('set', this.setColorTemperature.bind(this));
     this.getCharacteristic(Characteristic.Hue).on('set', this.setColor.bind(this));
-
   }
 
   async updateCharacteristics(device) {
@@ -42,25 +41,31 @@ module.exports = class WyzeLight extends WyzeAccessory {
           this.updateColorTemp(property.value);
           break;
 
-          case WYZE_API_COLOR_PROPERTY:
-            this.updateColor(property.value);
-            break;
+        case WYZE_API_COLOR_PROPERTY:
+          this.updateColor(property.value);
+          break;
       }
     }
   }
 
   updateBrightness(value) {
+    this.log.debug('MeshLight: updateBrightness ' + value);
     this.getCharacteristic(Characteristic.Brightness).updateValue(value);
+    this.log.debug('success');
   }
 
   updateColorTemp(value) {
+    this.log.debug('MeshLight: updateColorTemp ' + value);
     let floatValue = this._rangeToFloat(value, WYZE_COLOR_TEMP_MIN, WYZE_COLOR_TEMP_MAX);
     let homeKitValue = this._floatToRange(floatValue, HOMEKIT_COLOR_TEMP_MIN, HOMEKIT_COLOR_TEMP_MAX);
     this.getCharacteristic(Characteristic.ColorTemperature).updateValue(homeKitValue);
+    this.log.debug('success');
   }
 
   updateColor(value) {
+    this.log.debug('MeshLight: updateColor ' + value);
     this.getCharacteristic(Characteristic.Color).updateValue(value);
+    this.log.debug('success');
   }
 
   getService() {
