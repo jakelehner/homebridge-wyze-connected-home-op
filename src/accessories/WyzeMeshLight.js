@@ -25,7 +25,7 @@ module.exports = class WyzeLight extends WyzeAccessory {
     this.getCharacteristic(Characteristic.Brightness).on('set', this.setBrightness.bind(this));
     this.getCharacteristic(Characteristic.ColorTemperature).on('set', this.setColorTemperature.bind(this));
     this.getCharacteristic(Characteristic.Hue).on('set', this.setColor.bind(this));
-    //this.getCharacteristic(Characteristic.Name).on('set', this.getName.bind(this));
+
   }
 
   async updateCharacteristics(device) {
