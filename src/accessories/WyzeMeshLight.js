@@ -64,7 +64,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
 
   updateColor(value) {
     this.plugin.log.debug('MeshLight: updateColor ' + value);
-    this.getCharacteristic(Characteristic.Color).updateValue(value);
+    this.getCharacteristic(Characteristic.Hue).updateValue(value);
     this.plugin.log.debug('success');
   }
 
