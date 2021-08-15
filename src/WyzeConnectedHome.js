@@ -19,6 +19,7 @@ function delay(ms) {
 module.exports = class WyzeConnectedHome {
   constructor(log, config, api) {
     this.log = log;
+
     this.config = config;
     this.api = api;
     this.client = this.getClient();
