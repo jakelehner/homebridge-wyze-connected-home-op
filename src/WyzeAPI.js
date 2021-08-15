@@ -6,7 +6,7 @@ const { homebridge, UUIDGen } = require('./types');
 
 module.exports = class WyzeAPI {
   constructor(options, log) {
-    this.log = log;
+    this.plugin.log = log;
 
     // User login parameters
     this.username = options.username;
@@ -55,10 +55,10 @@ module.exports = class WyzeAPI {
     try {
       return await this._performRequest(url, this.getRequestData(data));
     } catch (e) {
-      this.log.debug(e);
+      this.plugin.log.debug(e);
 
       if (this.refresh_token) {
-        this.log.error('Error, refreshing access token and trying again');
+        this.plugin.log.error('Error, refreshing access token and trying again');
 
         try {
           await this.refreshToken();
@@ -68,9 +68,9 @@ module.exports = class WyzeAPI {
         }
       }
 
-      this.log.error('Error, logging in and trying again');
+      this.plugin.log.error('Error, logging in and trying again');
 
-      await this.login();
+      await this.plugin.login();
       return this._performRequest(url, this.getRequestData(data));
     }
   }
@@ -84,19 +84,19 @@ module.exports = class WyzeAPI {
       ...config,
     };
 
-    this.log.debug(`Performing request: ${url}`);
-    this.log.debug(`Request config: ${JSON.stringify(config)}`);
+    this.plugin.log.debug(`Performing request: ${url}`);
+    this.plugin.log.debug(`Request config: ${JSON.stringify(config)}`);
 
     let result;
 
     try {
       result = await axios(config);
-      this.log.debug(`API response: ${JSON.stringify(result.data)}`);
+      this.plugin.log.debug(`API response: ${JSON.stringify(result.data)}`);
     } catch (e) {
-      this.log.error(`Request failed: ${e}`);
+      this.plugin.log.error(`Request failed: ${e}`);
 
       if (e.response) {
-        this.log.error(`Response (${e.response.statusText}): ${JSON.stringify(e.response.data)}`);
+        this.plugin.log.error(`Response (${e.response.statusText}): ${JSON.stringify(e.response.data)}`);
       }
 
       throw e;
@@ -147,7 +147,7 @@ module.exports = class WyzeAPI {
 
     await this._updateTokens(result.data);
 
-    this.log.info('Successfully logged into Wyze API');
+    this.plugin.log.info('Successfully logged into Wyze API');
   }
 
   async maybeLogin() {
@@ -156,7 +156,7 @@ module.exports = class WyzeAPI {
     }
 
     if (!this.access_token) {
-      await this.login();
+      await this.plugin.login();
     }
   }
 
@@ -256,12 +256,12 @@ module.exports = class WyzeAPI {
 
     try {
       result = await axios.post('https://yd-saas-toc.wyzecam.com/openapi/lock/v1/control', body);
-      this.log.debug(`API response: ${JSON.stringify(result.data, null, '\t')}`);
+      this.plugin.log.debug(`API response: ${JSON.stringify(result.data, null, '\t')}`);
     } catch (e) {
-      this.log.debug(`Request failed: ${e}`);
+      this.plugin.log.debug(`Request failed: ${e}`);
 
       if (e.response) {
-        this.log.info(`Response (${e.response.statusText}): ${JSON.stringify(e.response.data, null, '\t')}`);
+        this.plugin.log.info(`Response (${e.response.statusText}): ${JSON.stringify(e.response.data, null, '\t')}`);
       }
 
       throw e;
