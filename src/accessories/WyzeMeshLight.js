@@ -49,19 +49,19 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
   }
 
   updateBrightness(value) {
-    this.plugin.log.debug('MeshLight: updateBrightness ' + value);
+    this.plugin.log.info('MeshLight: updateBrightness ' + value);
     this.getCharacteristic(Characteristic.Brightness).updateValue(value);
   }
 
   updateColorTemp(value) {
-    this.plugin.log.debug('MeshLight: updateColorTemp ' + value);
+    this.plugin.log.info('MeshLight: updateColorTemp ' + value);
     let floatValue = this._rangeToFloat(value, WYZE_COLOR_TEMP_MIN, WYZE_COLOR_TEMP_MAX);
     let homeKitValue = this._floatToRange(floatValue, HOMEKIT_COLOR_TEMP_MIN, HOMEKIT_COLOR_TEMP_MAX);
     this.getCharacteristic(Characteristic.ColorTemperature).updateValue(homeKitValue);
   }
 
   updateColor(value) {
-    this.plugin.log.debug('MeshLight: updateColor ' + value);
+    this.plugin.log.info('MeshLight: updateColor ' + value);
     this.getCharacteristic(Characteristic.Hue).updateValue(this.convertColorFromWyze_HEXHSB_ToHomeKit(value).h);
   }
 

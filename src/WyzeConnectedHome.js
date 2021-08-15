@@ -59,14 +59,14 @@ module.exports = class WyzeConnectedHome {
   }
 
   async refreshDevices() {
-    this.log.debug('Refreshing devices...');
+    this.log.info('Refreshing devices...');
 
     try {
       let objectList = await this.client.getObjectList();
       let timestamp = objectList.ts;
       let devices = objectList.data.device_list;
 
-      this.log.debug(`Found ${devices.length} device(s)`);
+      this.log.info(`Found ${devices.length} device(s)`);
       await this.loadDevices(devices, timestamp);
     } catch (e) {
       this.log.error(`Error getting devices: ${e}`);
@@ -97,7 +97,7 @@ module.exports = class WyzeConnectedHome {
   async loadDevice(device, timestamp) {
     let accessoryClass = this.getAccessoryClass(device.product_type,device.product_model);
     if (!accessoryClass) {
-      this.log.debug(`Unsupported device type: ${device.product_type}`);
+      this.log.error(`Unsupported device type: ${device.product_type}`);
       return;
     }
 
