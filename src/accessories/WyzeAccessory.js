@@ -68,6 +68,15 @@ module.exports = class WyzeAccessory {
     //
   }
 
+  convertColorFromWyze_HEXHSB_ToHomeKit(value) {
+    const [, h, s, b] = (value || '0000000000ffff').match(/^.{6}([0-9a-f]{4})([0-9a-f]{2})([0-9a-f]{2})$/i) || [0, '0', 'ff', 'ff'];
+    return {
+        h: parseInt(h, 16),
+        s: Math.round(parseInt(s, 16) / 2.55),
+        b: Math.round(parseInt(b, 16) / 2.55)
+    };
+}
+
   async getPropertyList() {
     let response = await this.plugin.client.getPropertyList(this.mac, this.product_model);
 
