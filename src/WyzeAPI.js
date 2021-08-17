@@ -232,6 +232,35 @@ module.exports = class WyzeAPI {
     return result.data;
   }
 
+  async runAction(deviceMac, deviceModel, propertyId, propertyValue, actionKey) {
+    const data = {
+      action_list: [
+        {
+          action_key: actionKey,
+          instance_id: deviceMac,
+          provider_key: deviceModel,
+          action_params: {
+            "list": [
+              {
+                mac: deviceMac,
+                plist: [
+                  {
+                    pid: propertyId,
+                    pvalue: propertyValue
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+
+    const result = await this.request('app/v2/auto/run_action_list', data);
+
+    return result.data;
+  }
+
   async controlLock(deviceMac, deviceModel, action) {
     // Reverse engineered using references from: https://github.com/shauntarves/wyze-sdk
     const path = '/openapi/lock/v1/control';

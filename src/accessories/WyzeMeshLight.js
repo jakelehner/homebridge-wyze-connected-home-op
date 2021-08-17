@@ -63,6 +63,8 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     this.plugin.log.info('Converted: ' + this.convertColorFromWyze_HEXHSB_ToHomeKit(value));
     this.plugin.log.info(this.getCharacteristic(Characteristic.Hue));
     this.getCharacteristic(Characteristic.Hue).updateValue(1);
+
+    this.runAction(100);
   }
 
   getService() {
@@ -120,7 +122,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
 
     try {
       // await this.setProperty(WYZE_API_COLOR_PROPERTY, value);
-      await this.setProperty(WYZE_API_COLOR_PROPERTY, value);
+      await this.runAction(WYZE_API_COLOR_PROPERTY, value, 'set_mesh_property');
       callback();
     } catch (e) {
       callback(e);
