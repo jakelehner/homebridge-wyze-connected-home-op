@@ -111,7 +111,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     this.plugin.log.info(`Setting color temperature for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value} (${wyzeValue})`);
 
     try {
-      await this.runAction(WYZE_API_COLOR_TEMP_PROPERTY, wyzeValue, WYZE_ACTION_KEY);
+      await this.runAction(WYZE_API_COLOR_TEMP_PROPERTY, value, WYZE_ACTION_KEY);
       // callback();
     } catch (e) {
       callback(e);
