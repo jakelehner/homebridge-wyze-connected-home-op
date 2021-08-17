@@ -110,7 +110,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
 
     try {
       await this.setProperty(WYZE_API_COLOR_TEMP_PROPERTY, wyzeValue);
-      callback();
+      // callback();
     } catch (e) {
       callback(e);
     }
