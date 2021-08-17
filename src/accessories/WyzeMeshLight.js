@@ -62,7 +62,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     this.plugin.log.info('MeshLight: updateColor ' + value);
     this.plugin.log.info('Converted: ' + this.convertColorFromWyze_HEXHSB_ToHomeKit(value));
     this.plugin.log.info(this.getCharacteristic(Characteristic.Hue));
-    this.runAction(100);
+    this.setColor(100);
     this.getCharacteristic(Characteristic.Hue).updateValue(1);
   }
 
@@ -120,8 +120,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     this.plugin.log.info(`Setting color for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value}`);
 
     try {
-      let actionKey = "set_mesh_property";
-      await this.runAction(WYZE_API_COLOR_PROPERTY, value, actionKey);
+      await this.runAction(WYZE_API_COLOR_PROPERTY, value, 'set_mesh_property');
       callback();
     } catch (e) {
       callback(e);

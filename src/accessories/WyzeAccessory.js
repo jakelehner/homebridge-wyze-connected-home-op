@@ -96,7 +96,7 @@ module.exports = class WyzeAccessory {
   }
 
   async runAction(property, value, actionKey) {
-    this.plugin.log.info('actionKey: ' + actionKey);
+    this.plugin.log.info({property, value, actionKey});
     try {
       this.updating = true;
 
