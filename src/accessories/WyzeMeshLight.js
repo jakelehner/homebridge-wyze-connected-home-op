@@ -120,7 +120,6 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     this.plugin.log.info(`Setting color for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value}`);
 
     try {
-      let 
       await this.runAction(WYZE_API_COLOR_PROPERTY, value, actionKey = "set_mesh_property");
       callback();
     } catch (e) {
