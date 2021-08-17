@@ -123,7 +123,8 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
 
     try {
       await this.runAction(WYZE_API_COLOR_PROPERTY, 'FF0000', 'set_mesh_property');
-      callback();
+      this.plugin.log.info('success');
+      // callback();
     } catch (e) {
       callback(e);
     }
