@@ -261,6 +261,7 @@ module.exports = class WyzeAPI {
 
     const result = await this.request('app/v2/auto/run_action_list', data);
 
+    this.log.info(result.data);
     return result.data;
   }
 
