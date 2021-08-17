@@ -119,8 +119,10 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
   async setColor(value, callback) {
     this.plugin.log.info(`Setting color for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value}`);
 
+    // TODO convert value to HEX RGB
+
     try {
-      await this.runAction(WYZE_API_COLOR_PROPERTY, value, 'set_mesh_property');
+      await this.runAction(WYZE_API_COLOR_PROPERTY, 'FF0000', 'set_mesh_property');
       callback();
     } catch (e) {
       callback(e);
