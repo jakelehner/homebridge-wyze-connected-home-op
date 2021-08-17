@@ -258,10 +258,10 @@ module.exports = class WyzeAPI {
       result = await axios.post('https://yd-saas-toc.wyzecam.com/openapi/lock/v1/control', body);
       this.log.debug(`API response: ${JSON.stringify(result.data, null, '\t')}`);
     } catch (e) {
-      this.log.debug(`Request failed: ${e}`);
+      this.log.error(`Request failed: ${e}`);
 
       if (e.response) {
-        this.log.info(`Response (${e.response.statusText}): ${JSON.stringify(e.response.data, null, '\t')}`);
+        this.log.error(`Response (${e.response.statusText}): ${JSON.stringify(e.response.data, null, '\t')}`);
       }
 
       throw e;
