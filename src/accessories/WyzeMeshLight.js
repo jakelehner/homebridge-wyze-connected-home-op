@@ -62,7 +62,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     this.plugin.log.info('MeshLight: updateColor ' + value);
     this.plugin.log.info('Converted: ' + this.convertColorFromWyze_HEXHSB_ToHomeKit(value));
     this.plugin.log.info(this.getCharacteristic(Characteristic.Hue));
-    this.setColor(100);
+    this.setColorTemperature(2000);
     this.getCharacteristic(Characteristic.Hue).updateValue(1);
   }
 
