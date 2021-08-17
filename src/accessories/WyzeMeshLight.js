@@ -1,5 +1,5 @@
 const { Service, Characteristic } = require('../types');
-const WyzeAccessory = require('./WyzeAccessory');
+const WyzeAccessory = require('./WyzeLight');
 
 const WYZE_API_POWER_PROPERTY = 'P3';
 const WYZE_API_ONLINE_PROPERTY = 'P5';
@@ -25,14 +25,14 @@ module.exports = class WyzeMeshLight extends WyzeLight {
   }
 
   async updateCharacteristics(device) {
+    super(device);
+
     for (let property of propertyList.data.property_list) {
       switch (property.pid) {
         case WYZE_API_COLOR_PROPERTY:
           this.updateColor(property.value);
           break;
       }
-
-      super(device);
     }
   }
 
