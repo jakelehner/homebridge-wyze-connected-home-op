@@ -12,6 +12,8 @@ const WYZE_API_COLOR_LIGHT = 'P1508';
 const WYZE_API_POWER_LOSS_RECOVERY = 'P1509';
 const WYZE_API_DELAY_OFF = 'P1510';
 
+const WYZE_ACTION_KEY = 'set_mesh_property';
+
 const WYZE_COLOR_TEMP_MIN = 1800;
 const WYZE_COLOR_TEMP_MAX = 6500;
 const HOMEKIT_COLOR_TEMP_MIN = 500;
@@ -84,7 +86,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     this.plugin.log.info(`Setting power for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value}`);
 
     try {
-      await this.setProperty(WYZE_API_POWER_PROPERTY, (value) ? '1' : '0');
+      await this.runAction(WYZE_API_POWER_PROPERTY, (value) ? '1' : '0', WYZE_ACTION_KEY);
       callback();
     } catch (e) {
       callback(e);
@@ -95,7 +97,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     this.plugin.log.info(`Setting brightness for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value}`);
 
     try {
-      await this.setProperty(WYZE_API_BRIGHTNESS_PROPERTY, value);
+      await this.runAction(WYZE_API_BRIGHTNESS_PROPERTY, value, WYZE_ACTION_KEY);
       callback();
     } catch (e) {
       callback(e);
@@ -109,7 +111,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     this.plugin.log.info(`Setting color temperature for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value} (${wyzeValue})`);
 
     try {
-      await this.setProperty(WYZE_API_COLOR_TEMP_PROPERTY, wyzeValue);
+      await this.runAction(WYZE_API_COLOR_TEMP_PROPERTY, wyzeValue, WYZE_ACTION_KEY);
       // callback();
     } catch (e) {
       callback(e);
@@ -122,7 +124,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     // TODO convert value to HEX RGB
 
     try {
-      await this.runAction(WYZE_API_COLOR_PROPERTY, 'FF0000', 'set_mesh_property');
+      await this.runAction(WYZE_API_COLOR_PROPERTY, 'FF0000', WYZE_ACTION_KEY);
       this.plugin.log.info('success');
       // callback();
     } catch (e) {
