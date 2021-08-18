@@ -56,6 +56,10 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
   }
 
   updateColorTemp(value) {
+    if (value == '') {
+      value = 0;
+    }
+    
     let floatValue = this._rangeToFloat(value, WYZE_COLOR_TEMP_MIN, WYZE_COLOR_TEMP_MAX);
     let homeKitValue = this._floatToRange(floatValue, HOMEKIT_COLOR_TEMP_MIN, HOMEKIT_COLOR_TEMP_MAX);
     this.plugin.log.info(`updateColorTemp for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value}`);
