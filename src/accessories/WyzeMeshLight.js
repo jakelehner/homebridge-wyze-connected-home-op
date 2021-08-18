@@ -142,8 +142,8 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
       },
       {
         pid: WYZE_API_COLOR_TEMP_PROPERTY,
-        pvalue: value
-      }.toString()
+        pvalue: value.toString()
+      }
     ];
 
     try {
