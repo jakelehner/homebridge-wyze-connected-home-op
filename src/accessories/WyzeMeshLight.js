@@ -92,7 +92,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     ];
 
     try {
-      await this.runAction(actions, WYZE_ACTION_KEY);
+      await this.runActions(actions, WYZE_ACTION_KEY);
       callback();
     } catch (e) {
       callback(e);
@@ -110,7 +110,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     ];
     
     try {
-      await this.runAction(actions, WYZE_ACTION_KEY);
+      await this.runActions(actions, WYZE_ACTION_KEY);
       callback();
     } catch (e) {
       callback(e);
@@ -159,7 +159,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     ];
 
     try {
-      await this.runAction(actions, WYZE_ACTION_KEY);
+      await this.runActions(actions, WYZE_ACTION_KEY);
       this.plugin.log.info('success');
       callback();
     } catch (e) {
