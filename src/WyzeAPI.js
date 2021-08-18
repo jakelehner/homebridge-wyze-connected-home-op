@@ -234,8 +234,7 @@ module.exports = class WyzeAPI {
 
   async runActions(deviceMac, deviceModel, actions, actionKey) {
     
-    
-    const data = {
+    let data = {
       action_list: [
         {
           action_key: actionKey,
@@ -245,12 +244,7 @@ module.exports = class WyzeAPI {
             "list": [
               {
                 mac: deviceMac,
-                plist: [
-                  {
-                    pid: propertyId,
-                    pvalue: propertyValue
-                  }
-                ]
+                plist: actions
               }
             ]
           }

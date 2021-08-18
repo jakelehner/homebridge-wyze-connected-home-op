@@ -95,12 +95,12 @@ module.exports = class WyzeAccessory {
     }
   }
 
-  async runActions(property, value, actionKey) {
+  async runActions(actions, actionKey) {
     this.plugin.log.info({property, value, actionKey});
     try {
       this.updating = true;
 
-      let response = await this.plugin.client.runActions(this.mac, this.product_model, property, value, actionKey);
+      let response = await this.plugin.client.runActions(this.mac, this.product_model, actions, actionKey);
 
       this.lastTimestamp = response.ts;
     } finally {

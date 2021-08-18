@@ -1,5 +1,6 @@
 const { Service, Characteristic } = require('../types');
 const WyzeAccessory = require('./WyzeAccessory');
+const convert = require('color-convert');
 
 const WYZE_API_POWER_PROPERTY = 'P3';
 const WYZE_API_ONLINE_PROPERTY = 'P5';
@@ -62,10 +63,8 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
 
   updateColor(value) {
     this.plugin.log.info('MeshLight: updateColor ' + value);
-    this.plugin.log.info('Converted: ' + this.convertColorFromWyze_HEXHSB_ToHomeKit(value));
-    this.plugin.log.info(this.getCharacteristic(Characteristic.Hue));
-    this.setColorTemperature('2000');
-    this.getCharacteristic(Characteristic.Hue).updateValue(1);
+    this.plugin.log.info('Converted: ' + this.convert.hex.hsv(value));
+    this.getCharacteristic(Characteristic.Hue).updateValue(this.convert.hex.hsv(value));
   }
 
   getService() {
@@ -85,8 +84,15 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
   async setOn(value, callback) {
     this.plugin.log.info(`Setting power for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value}`);
 
+    let actions = [
+      {
+        pid: WYZE_API_POWER_PROPERTY,
+        pvalue: (value) ? '1' : '0'
+      }
+    ];
+
     try {
-      await this.runAction(WYZE_API_POWER_PROPERTY, (value) ? '1' : '0', WYZE_ACTION_KEY);
+      await this.runAction(actions, WYZE_ACTION_KEY);
       callback();
     } catch (e) {
       callback(e);
@@ -96,8 +102,15 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
   async setBrightness(value, callback) {
     this.plugin.log.info(`Setting brightness for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value}`);
 
+    let actions = [
+      {
+        pid: WYZE_API_BRIGHTNESS_PROPERTY,
+        pvalue: value
+      }
+    ];
+    
     try {
-      await this.runAction(WYZE_API_BRIGHTNESS_PROPERTY, value, WYZE_ACTION_KEY);
+      await this.runAction(actions, WYZE_ACTION_KEY);
       callback();
     } catch (e) {
       callback(e);
@@ -110,25 +123,45 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
 
     this.plugin.log.info(`Setting color temperature for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value} (${wyzeValue})`);
 
+    let actions = [
+      {
+        pid: WYZE_API_COLOR_PROPERTY,
+        pvalue: '000000'
+      },
+      {
+        pid: WYZE_API_COLOR_TEMP_PROPERTY,
+        pvalue: value
+      }
+    ];
+
     try {
-      await this.runActions(WYZE_API_COLOR_TEMP_PROPERTY, value, WYZE_ACTION_KEY);
-      // callback();
+      await this.runActions(actions, WYZE_ACTION_KEY);
+      callback();
     } catch (e) {
       this.plugin.log.info('error');
       this.plugin.log.info(e);
-      //callback(e);
+      callback(e);
     }
   }
 
   async setColor(value, callback) {
-    this.plugin.log.info(`Setting color for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value}`);
+    let wyzeValue = this.convert.hsv.hex(value);
+    this.plugin.log.info(`Setting color for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value} (${wyzeValue})`);
 
-    // TODO convert value to HEX RGB
+    this.plugin.log.info('MeshLight: setColor ' + value);
+    this.plugin.log.info('Converted: ' + this.convert.hsv.hex(value));
+
+    let actions = [
+      {
+        pid: WYZE_API_COLOR_PROPERTY,
+        pvalue: this.convert.hsv.hex(value)
+      }
+    ];
 
     try {
-      await this.runAction(WYZE_API_COLOR_PROPERTY, 'FF0000', WYZE_ACTION_KEY);
+      await this.runAction(actions, WYZE_ACTION_KEY);
       this.plugin.log.info('success');
-      // callback();
+      callback();
     } catch (e) {
       callback(e);
     }

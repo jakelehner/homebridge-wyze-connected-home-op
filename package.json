@@ -6,10 +6,10 @@
   "main": "src/index.js",
   "dependencies": {
     "axios": "^0.21.1",
+    "color-convert": "^2.0.1",
     "colorsys": "^1.0.22",
     "md5": "^2.2.1"
   },
-  "devDependencies": {},
   "scripts": {
     "lint": "yarn eslint */**/*.{js,ts,tsx} --quiet --fix"
   },
@@ -22,7 +22,6 @@
     "homebridge-plugin"
   ],
   "author": "amrish <amrishraje@gmail.com>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jakelehner/homebridge-wyze-connected-home-op/issues"
   },
