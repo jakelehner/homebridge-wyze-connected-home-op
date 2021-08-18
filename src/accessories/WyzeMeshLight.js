@@ -1,6 +1,5 @@
 const { Service, Characteristic } = require('../types');
 const WyzeAccessory = require('./WyzeAccessory');
-const convert = require('color-convert');
 
 const WYZE_API_POWER_PROPERTY = 'P3';
 const WYZE_API_ONLINE_PROPERTY = 'P5';
@@ -118,7 +117,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
     let actions = [
       {
         pid: WYZE_API_BRIGHTNESS_PROPERTY,
-        pvalue: value
+        pvalue: value.toString()
       }
     ];
     
@@ -144,7 +143,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
       {
         pid: WYZE_API_COLOR_TEMP_PROPERTY,
         pvalue: value
-      }
+      }.toString()
     ];
 
     try {
