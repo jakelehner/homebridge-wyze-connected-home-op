@@ -62,9 +62,12 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
   }
 
   updateColor(value) {
+    var convert = require('color-convert');
+
+    this.plugin.log.info(convert);
     this.plugin.log.info('MeshLight: updateColor ' + value);
-    this.plugin.log.info('Converted: ' + this.convert.hex.hsv(value));
-    this.getCharacteristic(Characteristic.Hue).updateValue(this.convert.hex.hsv(value));
+    this.plugin.log.info('Converted: ' + convert.hex.hsv(value));
+    this.getCharacteristic(Characteristic.Hue).updateValue(convert.hex.hsv(value));
   }
 
   getService() {
@@ -145,16 +148,20 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
   }
 
   async setColor(value, callback) {
-    let wyzeValue = this.convert.hsv.hex(value);
+    var convert = require('color-convert');
+    this.plugin.log.info(convert);
+
+    let wyzeValue = convert.hsv.hex(value);
+    
     this.plugin.log.info(`Setting color for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value} (${wyzeValue})`);
 
     this.plugin.log.info('MeshLight: setColor ' + value);
-    this.plugin.log.info('Converted: ' + this.convert.hsv.hex(value));
+    this.plugin.log.info('Converted: ' + convert.hsv.hex(value));
 
     let actions = [
       {
         pid: WYZE_API_COLOR_PROPERTY,
-        pvalue: this.convert.hsv.hex(value)
+        pvalue: convert.hsv.hex(value)
       }
     ];
 
