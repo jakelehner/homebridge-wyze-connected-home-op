@@ -64,9 +64,9 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
   updateColor(value) {
     var convert = require('color-convert');
 
-    this.plugin.log.info('MeshLight: updateColor ' + value);
-    this.plugin.log.info('Converted: ' + convert.hex.hsv(value));
-    this.plugin.log.info('Converted Hue: ' + convert.hex.hsv(value)[0]);
+    this.plugin.log.debug('MeshLight: updateColor ' + value);
+    this.plugin.log.debug('Converted: ' + convert.hex.hsv(value));
+    this.plugin.log.debug('Converted Hue: ' + convert.hex.hsv(value)[0]);
     this.getCharacteristic(Characteristic.Hue).updateValue(convert.hex.hsv(value)[0]);
   }
 
