@@ -65,7 +65,7 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
 
     this.plugin.log.debug(`updateColorTemp for ${this.homeKitAccessory.context.mac} (${this.homeKitAccessory.context.nickname}) to ${value}`);
     this.plugin.log.debug(`${value} -> ${floatValue} -> ${homeKitValue}`);
-    
+
     this.getCharacteristic(Characteristic.ColorTemperature).updateValue(homeKitValue);  
   }
 
@@ -101,6 +101,8 @@ module.exports = class WyzeMeshLight extends WyzeAccessory {
         pvalue: (value) ? '1' : '0'
       }
     ];
+
+    this.plugin.log.info(actions)
 
     try {
       await this.runActions(actions, WYZE_ACTION_KEY);

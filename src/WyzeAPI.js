@@ -233,7 +233,9 @@ module.exports = class WyzeAPI {
   }
 
   async runActions(deviceMac, deviceModel, actions, actionKey) {
-    
+    this.log.info('runActions');
+    this.log.info(actions);
+
     let data = {
       action_list: [
         {
@@ -252,9 +254,6 @@ module.exports = class WyzeAPI {
       ]
     }
 
-    this.log.info('running actions');
-    this.log.info(actions);
-  
     const result = await this.request('app/v2/auto/run_action_list', data);
 
     this.log.info('response');
